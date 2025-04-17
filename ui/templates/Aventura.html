@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos de Aventura</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body { background-color: #e8f5e9; color: #333; }
+        .hero-body { display: flex; justify-content: center; }
+        .container { display: flex; justify-content: center; gap: 20px; padding: 20px; align-items: flex-start; flex-wrap: wrap; }
+        .juego { background: #a5d6a7; border-radius: 10px; box-shadow: 4px 4px 15px rgba(56, 142, 60, 0.5); padding: 20px; width: 320px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .juego img { width: 100%; border-radius: 10px; }
+        .votacion { margin-top: 10px; }
+        .votacion button { margin: 3px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; background-color: #388e3c; color: white; }
+        .votacion button:hover { background-color: #2e7d32; }
+        .comentarios-container { text-align: center; width: 100%; margin-top: 10px; display: flex; justify-content: center; }
+        .comentarios-container textarea { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; resize: none; }
+        .back-button a { text-decoration: none; color: #fff; font-weight: bold; padding: 10px 15px; background: #388e3c; border-radius: 5px; transition: 0.3s; }
+        .back-button a:hover { background: #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="left-container">
+            <div class="header-logo"> <p id="logo-gamershop">Gamershop</p></div>
+            <div class="categories"><a href="Categorias.html">Categorías</a></div>
+            <div class="registro"><a href="formulario.html">Registrarse</a></div>
+            <div class="login"><a href="login.html">Ingresar</a></div>
+        </div>
+        <div class="right-header">
+            <div class="header-search"><input type="text"></div>
+            <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de búsqueda">
+        </div>
+    </div>
+
+    <section class="hero-body">
+        <div class="container">
+            <div class="juego">
+                <span class="juego-titulo">Juegos de Aventura</span>
+                <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000018710/89e1f45e5012962fcdbc47b297dbb99472d04fdae7c60213bce6fb44713d2068" alt="Ori">
+                <p><strong>Nombre:</strong> Ori and the Blind Forest</p>
+                <p><strong>Descripción:</strong> En Ori and the Blind Forest, Ori, un pequeño espíritu guardián, es separado del Árbol del Espíritu y criado por Naru. Tras una gran catástrofe, el bosque de Nibel se sume en la oscuridad, y Ori debe embarcarse en una peligrosa aventura para restaurar el equilibrio y salvar su hogar.</p>
+                <p><strong>Precio:</strong> CLP$13.990</p>
+                <div class="votacion">
+                    <span>Vota:</span>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+                <div class="comentarios-container">
+                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+                </div>
+            </div>
+            <div class="juego">
+                <span class="juego-titulo">Juegos de Aventura</span>
+                <img src="https://gmedia.playstation.com/is/image/SIEPDC/Uncharted-4-keyart-01-en-16jun21?$1600px$" alt="Uncharted 4">
+                <p><strong>Nombre:</strong> Uncharted 4: El desenlace del ladrón</p>
+                <p><strong>Descripción:</strong> Aventura y acción en tercera persona donde Nathan Drake, un cazador de tesoros, se embarca en una peligrosa misión con su hermano, enfrentando traiciones y desafíos mientras descubre secretos del pasado.</p>
+                <p><strong>Precio:</strong> CLP$22.000</p>
+                <div class="votacion">
+                    <span>Vota:</span>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+                <div class="comentarios-container">
+                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="back-button">
+        <a href="index.html">Volver al inicio</a>
+    </div>
+
+    <div class="footer-container">
+        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
+    </div>
+</body>
+</html>

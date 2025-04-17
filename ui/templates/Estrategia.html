@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos de Estrategia</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body { background-color: #f3e5f5; color: #333; }
+        .hero-body { display: flex; justify-content: center; }
+        .container { display: flex; justify-content: center; gap: 20px; padding: 20px; align-items: flex-start; flex-wrap: wrap; }
+        .juego { background: #ce93d8; border-radius: 10px; box-shadow: 4px 4px 15px rgba(123, 31, 162, 0.5); padding: 20px; width: 320px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .juego img { width: 100%; border-radius: 10px; }
+        .votacion { margin-top: 10px; }
+        .votacion button { margin: 3px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; background-color: #7b1fa2; color: white; }
+        .votacion button:hover { background-color: #6a1b9a; }
+        .comentarios-container { text-align: center; width: 100%; margin-top: 10px; display: flex; justify-content: center; }
+        .comentarios-container textarea { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; resize: none; }
+        .back-button a { text-decoration: none; color: #fff; font-weight: bold; padding: 10px 15px; background: #7b1fa2; border-radius: 5px; transition: 0.3s; }
+        .back-button a:hover { background: #6a1b9a; }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="left-container">
+            <div class="header-logo"> <p id="logo-gamershop">Gamershop</p></div>
+            <div class="categories"><a href="Categorias.html">Categorías</a></div>
+            <div class="registro"><a href="formulario.html">Registrarse</a></div>
+            <div class="login"><a href="login.html">Ingresar</a></div>
+        </div>
+        <div class="right-header">
+            <div class="header-search"><input type="text"></div>
+            <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de búsqueda">
+        </div>
+    </div>
+
+    <section class="hero-body">
+        <div class="container">
+            <div class="juego">
+                <span class="juego-titulo">Juegos de Estrategia</span>
+                <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000072051/a7baf09e1da434bae373120750e39cb7d134c116ca8a4b81bc07666ecab9b326" alt="Balatro">
+                <p><strong>Nombre:</strong> Balatro</p>
+                <p><strong>Descripción:</strong> Juego de terror psicológico en el que el jugador explora un mundo oscuro y perturbador, enfrentándose a desafíos mientras descubre secretos sobre su entorno.</p>
+                <p><strong>Precio:</strong> CLP$8.300</p>
+                <div class="votacion">
+                    <span>Vota:</span>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+                <div class="comentarios-container">
+                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+                </div>
+            </div>
+            <div class="juego">
+                <span class="juego-titulo">Juegos de Estrategia</span>
+                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg?t=1733342309" alt="Inscryption">
+                <p><strong>Nombre:</strong> Inscryption</p>
+                <p><strong>Descripción:</strong> Un juego de cartas y terror que combina mecánicas de roguelike, acertijos y narrativa en un ambiente oscuro, donde el jugador debe enfrentar a un misterioso oponente en una partida mortal.</p>
+                <p><strong>Precio:</strong> CLP$9.000</p>
+                <div class="votacion">
+                    <span>Vota:</span>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+                <div class="comentarios-container">
+                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="back-button">
+        <a href="index.html">Volver al inicio</a>
+    </div>
+
+    <div class="footer-container">
+        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
+    </div>
+</body>
+</html>

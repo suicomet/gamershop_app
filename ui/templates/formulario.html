@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de nuevo usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .btn-primary, .btn-secondary {
+            background-color: #007bff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+
+        .hero-body {
+            background-image: url('rege.png'); 
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: cover;
+        }
+
+        .back-button a {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid #b71c1c;
+        }
+
+        .back-button a:hover {
+            background-color: #b71c1c;
+        }
+
+        .footer-container {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #3a3a3a;
+        }
+
+        .header-container a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            background: #6c757d;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .header-container a:hover {
+            background: #545b62;
+        }
+
+        #logo-gamershop {
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            padding: 0;
+            background: none;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="left-container">
+            <span id="logo-gamershop">Gamershop</span>
+            <a href="Categorias.html" class="categories">Categorías</a>
+            <a href="login.html" class="login">Ingresar</a>
+        </div>
+        <div class="right-header">
+            <div class="header-search"><input type="text"></div>
+            <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de busqueda">
+        </div>
+    </div>
+    <div class="hero-body">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg p-4">
+                        <div id="registro-container">
+                            <h2>Registro de usuario</h2>
+                            <form id="formulario">
+                                <div class="form-group">
+                                    <label for="nombre-completo">Nombre completo:</label> 
+                                    <input type="text" name="nombre" class="form-control" placeholder="Ingresa tu nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre-usuario">Nombre de usuario: </label>
+                                    <input type="text" name="username" class="form-control"  placeholder="Ingresa tu usuario:" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contra">Contraseña:</label>
+                                    <input type="password" name="contra" class="form-control" placeholder="Ingresa tu contraseña de 6 caracteres:" required> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="recontra">Reingrese su contraseña: </label>
+                                    <input type="password" name="recontra" class="form-control" placeholder="Reingresa y confirma tu contraseña de 6 caracteres:" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Correo electronico:</label>
+                                    <input type="email" name="email" class="form-control" placeholder="ejemplo@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+                                    <input type="date" name="fecha-nacimiento" class="form-control" max="2013-03-23" required>
+                                </div>   
+                                <div class="form-group">
+                                    <label for="direccion">Direccion:</label>
+                                    <input type="text" name="direccion" class="form-control" placeholder="Calle #Número">
+                                </div>
+                                <input type="submit" value="Registrar" class="btn-primary">
+                                <input type="reset" value="Limpiar" class="btn-secondary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="back-button">
+        <a href="index.html">Volver al inicio</a>
+    </div>
+    <div class="footer-container">
+        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
+    </div>
+</body>
+</html>

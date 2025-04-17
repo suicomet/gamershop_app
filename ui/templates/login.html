@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerShop - Inicio de Sesión</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+</head>
+<body>
+    <div class="header-container">
+        <div class="left-container">
+            <div class="header-logo"><p id="logo-gamershop">Gamershop</p></div>
+            <div class="categories"><a href="Categorias.html">Categorías</a></div>
+            <div class="registro"><a href="formulario.html">Registrarse</a></div>
+            <div class="login"><a href="login.html">Ingresar</a></div>
+        </div>
+        <div class="right-header">
+            <div class="header-search"><input type="text"></div>
+            <img id="logo-search" src="{% static 'css/icons8-search.svg' %}" alt="Icono de busqueda">
+        </div>
+    </div>
+    <div class="hero-body">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg p-4">
+                        <div id="login-container">
+                            <h2>Inicio de Sesión</h2>
+                            <form id="login">
+                                <div class="form-group">
+                                    <label for="nombre-usuario">Nombre de usuario:</label>
+                                    <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contraseña">Contraseña:</label>
+                                    <input type="password" name="contra" class="form-control" required>
+                                </div>
+                                <input type="submit" value="Ingresar" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container" id="inferiorcontainer">
+        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
+    </div>
+<script>
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [] // se tiene que parsear en JSON el string que entrega js
+            if (usuarios.length === 0){
+            let usuarioAdmin = {
+                nombre: "Soy Admin",
+                username: "soyadmin",
+                password: "Admin@123",
+                email: "soyadmin@admin.com",
+                fechaNacimiento: "1995-03-02",
+                direccion: "lol"
+            };
+
+            usuarios.push(usuarioAdmin);
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        }
+
+        $(document).ready(function(){
+            $("#login").submit(function(e){
+                e.preventDefault();
+                // obtener los valores usando jquery
+                let username = $("input[name='username']").val();
+                let password = $("input[name='contra']").val();
+
+                // conseguir los usuarios anteriores o crear array en caso de no existir
+                let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+                // se ocupa el method find de js para buscar usuarios
+
+                let adminFound = usuarios.find(user => user.username === "soyadmin" && user.password === "Admin@123" && user.username === username && user.password === password);
+
+                let usuarioFound = usuarios.find(user => user.username === username && user.password === password);
+                
+                // si no da nulo la busqueda
+
+                if(adminFound){
+                    setTimeout(() => {
+                        window.location.href = "admin-pag.html";    
+                    }, 1500);
+                    
+                }
+
+                else if(usuarioFound) {
+                    alert(`Usuario ${usuarioFound.username} encontrado!`)
+                } else {
+                    alert("Usuario no encontrado")
+                }
+
+            })
+        })
+    </script>
+</body>
+</html>
