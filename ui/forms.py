@@ -3,17 +3,26 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
-class RegistroUsuarioForm(forms.Form):
-    nombre = forms.CharField(max_length=100, label='Nombre completo')
-    username = forms.CharField(max_length=100, label='Nombre de usuario')
+class RegistroUsuarioForm(forms.ModelForm):
     contra = forms.CharField(widget=forms.PasswordInput, label='Contraseña')
     recontra = forms.CharField(widget=forms.PasswordInput, label='Reingrese su contraseña')
-    email = forms.EmailField(label='Correo electrónico')
     fecha_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), label='Fecha de nacimiento')
     direccion = forms.CharField(required=False, label='Dirección')
 
-    def clean_nombre(self):
-        nombre = self.cleaned_data['nombre']
+    class Meta:
+        model = User
+        fields = ['first_name', 'username', 'email']
+
+        labels = {
+            'first_name': 'Nombre completo',
+            'username': 'Nombre de usuario',
+            'email': 'Correo electrónico'
+        }
+        help_texts = {
+            'username': 'Requerido. Máximo 150 caracteres. Letras, números y @/./+/-/_ solamente.',
+        }
+    def clean_first_name(self):
+        nombre = self.cleaned_data['first_name']
         if any(char.isdigit() for char in nombre):
             raise ValidationError("El nombre no debe contener números.")
         if len(nombre) < 3:

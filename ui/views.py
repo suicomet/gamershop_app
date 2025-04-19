@@ -30,19 +30,36 @@ def estrategia(request):
     return render(request, "Estrategia.html")
 
 
+from django.contrib.auth.models import User
+from .forms import RegistroUsuarioForm
+
 def registrar(request):
     if request.method == 'POST':
         form = RegistroUsuarioForm(request.POST)
         if form.is_valid():
-            form.save()
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            nombre = form.cleaned_data['first_name']
+            contra = form.cleaned_data['contra']
+
+            # Crear usuario
+            usuario = User.objects.create_user(
+                username=username,
+                password=contra,
+                email=email,
+                first_name=nombre
+            )
+
+
+
             messages.success(request, 'Usuario registrado con éxito.')
             return redirect('login')
         else:
             messages.error(request, 'Corrige los errores del formulario.')
     else:
         form = RegistroUsuarioForm()
-
     return render(request, 'formulario.html', {'form': form})
+
 
 
 def freeToPlay(request):
