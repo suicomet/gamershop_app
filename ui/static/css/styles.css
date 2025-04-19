@@ -69,7 +69,8 @@ a {
 
 
 
-.nav-button a {
+.nav-button a,
+.nav-button button {
     display: inline-block;
     padding: 8px 15px;
     background-color: white;
@@ -82,12 +83,11 @@ a {
     transition: background-color 0.3s ease;
 }
 
-.nav-button a:hover {
+.nav-button a:hover,
+.nav-button button:hover {
     background-color: #f0f0f0;
     color: black;
-
 }
-
 .hero-carruseles {
     display: flex;
     justify-content: space-between;
