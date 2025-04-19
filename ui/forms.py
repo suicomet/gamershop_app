@@ -19,7 +19,7 @@ class RegistroUsuarioForm(forms.ModelForm):
             'email': 'Correo electrónico'
         }
         help_texts = {
-            'username': 'Requerido. Máximo 150 caracteres. Letras, números y @/./+/-/_ solamente.',
+            'username': 'Requerido. Letras, números y @/./+/-/_ solamente.',
         }
     def clean_first_name(self):
         nombre = self.cleaned_data['first_name']
