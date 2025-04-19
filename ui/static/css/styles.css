@@ -1,0 +1,181 @@
+.about-us {
+    padding: 50px 6% 20px 6%;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-top: 100px;
+    border-top: 2px solid #fd1810;
+    font-size: 15px;
+    line-height: 1.3;
+}
+
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+body.index {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-image: url('../images/fondosesion.png');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5px 1%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+}
+
+.left-container, .right-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+#logo-gamershop {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fa1010;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+.nav-button a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button a:hover {
+    background-color: #f0f0f0;
+    color: black;
+
+}
+
+.hero-carruseles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 5%;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.carousel-column {
+    flex: 1;
+    min-width: 280px;
+}
+
+.hero-center {
+    text-align: center;
+    flex: 1;
+    min-width: 280px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+#title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    background-color: #f73426;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.carousel {
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 15s linear infinite;
+    gap: 20px;
+}
+
+.carousel-item {
+    min-width: 200px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 320px;
+    display: block;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-240%); }
+}
+
+
+
+.footer-container {
+    background-color: #111;
+    text-align: center;
+    padding: 20px;
+    margin-top: 0px;
+}
+
+.footer-text {
+    margin: 5px;
+}
