@@ -11,15 +11,24 @@
     <div class="header-container">
         <div class="left-container">
             <div class="header-logo"><p id="logo-gamershop">Gamershop</p></div>
-            <div class="categories"><a href="Categorias.html">Categorías</a></div>
-            <div class="registro"><a href="formulario.html">Registrarse</a></div>
-            <div class="login"><a href="login.html">Ingresar</a></div>
+            <div class="categories"><a href="{% url 'categorias' %}">Categorías</a></div>
+
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link" style="padding: 0; margin-left: 10px; background: none; border: none; color: white; font-weight: bold;">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <div class="registro"><a href="{% url 'registro' %}">Registrarse</a></div>
+                <div class="login"><a href="{% url 'login' %}">Ingresar</a></div>
+            {% endif %}
         </div>
         <div class="right-header">
             <div class="header-search"><input type="text" placeholder="Buscar..."></div>
             <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de búsqueda">
         </div>
     </div>
+
     <div class="hero-body">
         <div class="hero-container">
             <p id="title">Gamershop</p>
@@ -27,6 +36,7 @@
             <div><button id="search-btn">Buscar</button></div>
         </div>
     </div>
+
     <div class="about-us">
         <h2>Sobre Nosotros</h2>
         <p>
@@ -38,10 +48,10 @@
             ¡Únete a la conversación y sé parte de nuestra comunidad de gamers!
         </p>
     </div>
+
     <div class="footer-container index-footer" id="inferiorcontainer">
         <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
         <p class="footer-text"><a href="terminos.html">Términos y condiciones</a></p>
     </div>
 </body>
-</html>
 </html>

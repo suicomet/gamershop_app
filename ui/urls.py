@@ -1,17 +1,20 @@
 from django.urls import path
-from . import views
+from django.contrib.auth.views import LogoutView
+from .views import CustomLoginView, home, categorias, accion, admin_pag, aventura, estrategia, registrar, freeToPlay, terminos, terror, inicio
+
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("Categorias.html", views.categorias, name="categorias"),
-    path("Accion.html", views.accion, name="accion"),
-    path("admin-pag.html", views.admin_pag, name="admin_pag"),
-    path("Aventura.html", views.aventura, name="aventura"),
-    path("Estrategia.html", views.estrategia, name="estrategia"),
-    path("formulario.html", views.registrar, name="registrar"),
-    path("FreeToPlay.html", views.freeToPlay, name="freeToPlay"),
-    path("login.html", views.login, name="login"),
-    path("terminos.html", views.terminos, name="terminos"),
-    path("Terror.html", views.terror, name="terror"),
-    path("index.html", views.inicio, name="inicio")
+    path('', home, name='index'),
+    path('categorias/', categorias, name='categorias'),
+    path('accion/', accion, name='accion'),
+    path('admin-pag/', admin_pag, name='admin_pag'),
+    path('aventura/', aventura, name='aventura'),
+    path('estrategia/', estrategia, name='estrategia'),
+    path('registrar/', registrar, name='registro'),
+    path('freeToPlay/', freeToPlay, name='freeToPlay'),
+    path('terminos/', terminos, name='terminos'),
+    path('terror/', terror, name='terror'),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
+
 ]

@@ -13,8 +13,9 @@
     <div class="header-container">
         <div class="left-container">
             <div class="header-logo"><p id="logo-gamershop">Gamershop</p></div>
-            <div class="categories"><a href="#">Categorías</a></div>
-            <div class="registro"><a href="#">Registrarse</a></div>
+            <div class="categories"><a href="{% url 'categorias' %}">Categorías</a></div>
+            <div class="registro"><a href="{% url 'registro' %}">Registrarse</a></div>
+
             <div class="login"><a href="{% url 'login' %}">Ingresar</a></div>
         </div>
         <div class="right-header">
