@@ -1,57 +1,29 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Gamershop</title>
-</head>
-<body class="index"> 
-    <div class="header-container">
-        <div class="left-container">
-            <div class="header-logo"><p id="logo-gamershop">Gamershop</p></div>
-            <div class="categories"><a href="{% url 'categorias' %}">Categorías</a></div>
 
-            {% if user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-link" style="padding: 0; margin-left: 10px; background: none; border: none; color: white; font-weight: bold;">Cerrar sesión</button>
-                </form>
-            {% else %}
-                <div class="registro"><a href="{% url 'registro' %}">Registrarse</a></div>
-                <div class="login"><a href="{% url 'login' %}">Ingresar</a></div>
-            {% endif %}
-        </div>
-        <div class="right-header">
-            <div class="header-search"><input type="text" placeholder="Buscar..."></div>
-            <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de búsqueda">
-        </div>
-    </div>
+{% block title %}Inicio - Gamershop{% endblock %}
 
-    <div class="hero-body">
-        <div class="hero-container">
-            <p id="title">Gamershop</p>
-            <div class="search-bar"><input type="text" placeholder="Buscar Juego..."></div>
-            <div><button id="search-btn">Buscar</button></div>
-        </div>
+{% block content %}
+<div class="hero-body">
+    <div class="hero-container">
+        <p id="title">Gamershop</p>
+        <div class="search-bar"><input type="text" placeholder="Buscar Juego..."></div>
+        <div><button id="search-btn">Buscar</button></div>
     </div>
+</div>
 
-    <div class="about-us">
-        <h2>Sobre Nosotros</h2>
-        <p>
-            Bienvenidos a nuestro Foro para Gamers!
-            En nuestro sitio web encontrarás todo lo que necesitas saber sobre los videojuegos más populares. Ofrecemos descripciones de cada juego, así como los precios actualizados para que puedas tomar la mejor decisión antes de tu compra.
-            Contamos con diversas categorías, como Acción, Aventura, Estrategia, Free to Play y Terror, para que puedas explorar los juegos según tus intereses. Además, pronto estaremos actualizando nuevas categorías para que tengas aún más opciones al momento de elegir.
-            También hemos creado una interfaz de votos para que puedas calificar cada juego del 1 al 5, permitiendo a la comunidad ver las opiniones generales sobre cada título. ¡Tu voto cuenta!
-            Al final de cada juego, encontrarás un espacio para comentar, donde podrás compartir tus experiencias, recomendaciones o dudas con otros usuarios. Creemos en la fuerza de la comunidad, y juntos podemos ayudar a otros jugadores a descubrir nuevos juegos y tomar decisiones informadas.
-            ¡Únete a la conversación y sé parte de nuestra comunidad de gamers!
-        </p>
-    </div>
-
-    <div class="footer-container index-footer" id="inferiorcontainer">
-        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
-        <p class="footer-text"><a href="terminos.html">Términos y condiciones</a></p>
-    </div>
-</body>
-</html>
+<div class="about-us">
+    <h2>Sobre Nosotros</h2>
+    <p>
+        Bienvenidos a nuestro Foro para Gamers!<br><br>
+        En nuestro sitio web encontrarás todo lo que necesitas saber sobre los videojuegos más populares. Ofrecemos descripciones de cada juego,
+        así como los precios actualizados para que puedas tomar la mejor decisión antes de tu compra.<br><br>
+        Contamos con diversas categorías, como Acción, Aventura, Estrategia, Free to Play y Terror, para que puedas explorar los juegos según tus intereses.
+        Además, pronto estaremos actualizando nuevas categorías para que tengas aún más opciones al momento de elegir.<br><br>
+        También hemos creado una interfaz de votos para que puedas calificar cada juego del 1 al 5, permitiendo a la comunidad ver las opiniones generales
+        sobre cada título. ¡Tu voto cuenta!<br><br>
+        Al final de cada juego, encontrarás un espacio para comentar, donde podrás compartir tus experiencias, recomendaciones o dudas con otros usuarios.
+        Creemos en la fuerza de la comunidad, y juntos podemos ayudar a otros jugadores a descubrir nuevos juegos y tomar decisiones informadas.
+    </p>
+</div>
+{% endblock %}

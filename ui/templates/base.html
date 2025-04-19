@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gamershop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body class="index">
+
+    <!-- Fondo oscuro -->
+    <div class="overlay"></div>
+
+    <!-- CABECERA -->
+    <div class="header-container">
+        <div class="left-container">
+            <div class="header-logo"><p id="logo-gamershop">Gamershop</p></div>
+            <div class="nav-button"><a href="{% url 'categorias' %}">Categorías</a></div>
+            <div class="nav-button"><a href="{% url 'registro' %}">Registrarse</a></div>
+            {% if user.is_authenticated %}
+                <div class="nav-button"><a href="{% url 'logout' %}">Cerrar sesión</a></div>
+            {% else %}
+                <div class="nav-button"><a href="{% url 'login' %}">Ingresar</a></div>
+            {% endif %}
+        </div>
+        <div class="right-header">
+            <div class="header-search"><input type="text" placeholder="Buscar..."></div>
+            <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de búsqueda">
+        </div>
+    </div>
+
+    <!-- CONTENIDO DINÁMICO -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <div class="footer-container index-footer" id="inferiorcontainer">
+        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
+        <p class="footer-text"><a href="{% url 'terminos' %}">Términos y condiciones</a></p>
+    </div>
+
+</body>
+</html>
