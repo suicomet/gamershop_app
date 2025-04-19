@@ -82,39 +82,18 @@
 <div class="registro-wrapper">
     <div class="card">
         <h2>Registro de usuario</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="nombre">Nombre completo:</label>
-                <input type="text" name="nombre" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="username">Nombre de usuario:</label>
-                <input type="text" name="username" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="contra">Contraseña:</label>
-                <input type="password" name="contra" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="recontra">Reingrese su contraseña:</label>
-                <input type="password" name="recontra" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Correo electrónico:</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="fecha-nacimiento">Fecha de nacimiento:</label>
-                <input type="date" name="fecha-nacimiento" class="form-control" max="2013-03-23" required>
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección:</label>
-                <input type="text" name="direccion" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
-            <button type="reset" class="btn btn-secondary">Limpiar</button>
+       <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="reset" class="btn btn-secondary">Limpiar</button>
+</form>
+
         </form>
     </div>
 </div>
+    {% block scripts %}
+    <script src="{% static 'js/validaciones.js' %}"></script>
 {% endblock %}
+{% endblock %}
+

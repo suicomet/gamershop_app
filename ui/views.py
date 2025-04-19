@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from django.contrib.auth.views import LoginView
+from django.shortcuts import render, redirect
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LogoutView
+from django.contrib import messages
+from .forms import RegistroUsuarioForm
 
 # Create your views here.
 
@@ -24,8 +26,21 @@ def aventura(request):
 def estrategia(request):
     return render(request, "Estrategia.html")
 
+
 def registrar(request):
-    return render(request, "formulario.html")
+    if request.method == 'POST':
+        form = RegistroUsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario registrado con éxito.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Corrige los errores del formulario.')
+    else:
+        form = RegistroUsuarioForm()
+
+    return render(request, 'formulario.html', {'form': form})
+
 
 def freeToPlay(request):
     return render(request, "FreeToPlay.html")
