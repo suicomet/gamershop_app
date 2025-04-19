@@ -1,0 +1,16 @@
+# Archivos de entorno
+.env
+
+# Compilados de Python
+__pycache__/
+*.py[cod]
+
+# PyCharm
+.idea/
+
+# Bases de datos locales
+*.sqlite3
+
+# Entornos virtuales
+env/
+venv/

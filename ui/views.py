@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.contrib.auth.views import LoginView
 # Create your views here.
 
 
@@ -38,3 +38,6 @@ def terror(request):
 
 def inicio(request):
     return render(request, "index.html")
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
