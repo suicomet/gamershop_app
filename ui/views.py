@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import RegistroUsuarioForm
-
+from django.contrib.auth.decorators import login_required
+from .decorators import allowed_roles, admin_only
 # Create your views here.
 
 
@@ -17,8 +18,10 @@ def categorias(request):
 def accion(request):
     return render(request, "Accion.html")
 
+@login_required(login_url='login')
+@allowed_roles(roles=['administrador'])
 def admin_pag(request):
-    return render(request, "admin-pag.html")
+    return render(request, 'admin-pag.html')
 
 def aventura(request):
     return render(request, "Aventura.html")
