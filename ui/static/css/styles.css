@@ -13,10 +13,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
 }
 
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 body.index {
@@ -69,7 +72,8 @@ a {
 
 
 
-.nav-button a {
+.nav-button a,
+.nav-button button {
     display: inline-block;
     padding: 8px 15px;
     background-color: white;
@@ -80,13 +84,28 @@ a {
     border-radius: 5px;
     margin-right: 5px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+.nav-button button {
+    all: unset;
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
 }
 
-.nav-button a:hover {
+.nav-button a:hover,
+.nav-button button:hover {
     background-color: #f0f0f0;
     color: black;
-
 }
+
 
 .hero-carruseles {
     display: flex;

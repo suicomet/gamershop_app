@@ -5,23 +5,31 @@
 
 {% block content %}
 <style>
+    .registro-wrapper {
+        background-image: url('{% static "images/fondomine.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 0;
+    }
+
     .card {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e0e0e0;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 10px;
         color: white;
         padding: 30px;
-        margin-bottom: 20px;
         width: 100%;
         max-width: 700px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     }
 
     .card h2 {
-        color: white;
-        font-size: 28px;
-        margin-bottom: 25px;
         text-align: center;
+        margin-bottom: 25px;
     }
 
     .form-group {
@@ -33,34 +41,33 @@
 
     .form-group label {
         font-weight: bold;
-        color: #ffffff;
         flex-basis: 35%;
-        text-align: left;
         margin-right: 15px;
     }
 
     .form-group .form-control {
         flex-basis: 65%;
-        border: 1px solid #ccc;
-        padding: 12px;
+        padding: 10px;
         border-radius: 5px;
-        text-align: left;
-        font-size: 16px;
+        border: 1px solid #ccc;
     }
 
     .btn-primary, .btn-secondary {
-        background-color: #007bff;
-        border: none;
-        padding: 15px 30px;
-        border-radius: 5px;
-        color: white;
-        border: 2px solid transparent;
         margin-top: 15px;
-        font-size: 16px;
+        padding: 10px 25px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
     }
 
     .btn-secondary {
         background-color: #6c757d;
+        color: white;
     }
 
     .btn-primary:hover {
@@ -70,84 +77,44 @@
     .btn-secondary:hover {
         background-color: #545b62;
     }
-
-    .hero-body {
-        background-image: url('{% static 'images/rege.png' %}');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: calc(100vh - 110px);
-    }
-
-    .card {
-        margin-bottom: 20px;
-        width: 100%;
-        max-width: 700px;
-        padding: 30px;
-    }
-
-    #registro-container h2 {
-        font-size: 28px;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-
-    .form-group label {
-        font-size: 16px;
-    }
-
-    .footer-container {
-        text-align: center;
-        padding: 10px;
-        margin-top: 20px;
-    }
 </style>
-<div class="hero-body">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg">
-                    <div id="registro-container">
-                        <h2>Registro de usuario</h2>
-                        <form id="formulario" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="nombre-completo">Nombre completo:</label>
-                                <input type="text" name="nombre" class="form-control" placeholder="Ingresa tu nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nombre-usuario">Nombre de usuario: </label>
-                                <input type="text" name="username" class="form-control"  placeholder="Ingresa tu usuario" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contra">Contraseña:</label>
-                                <input type="password" name="contra" class="form-control" placeholder="Ingresa tu contraseña de 6 caracteres" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="recontra">Reingrese su contraseña: </label>
-                                <input type="password" name="recontra" class="form-control" placeholder="Confirma tu contraseña de 6 caracteres" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="correo">Correo electronico:</label>
-                                <input type="email" name="email" class="form-control" placeholder="ejemplo@email.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fecha-nacimiento">Fecha de nacimiento:</label>
-                                <input type="date" name="fecha-nacimiento" class="form-control" max="2013-03-23" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="direccion">Direccion:</label>
-                                <input type="text" name="direccion" class="form-control" placeholder="Calle #Número">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
-                            <button type="reset" class="btn btn-secondary btn-block">Limpiar</button>
-                        </form>
-                    </div>
-                </div>
+
+<div class="registro-wrapper">
+    <div class="card">
+        <h2>Registro de usuario</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" name="nombre" class="form-control" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="contra">Contraseña:</label>
+                <input type="password" name="contra" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="recontra">Reingrese su contraseña:</label>
+                <input type="password" name="recontra" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+                <input type="date" name="fecha-nacimiento" class="form-control" max="2013-03-23" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
+        </form>
     </div>
+</div>
 {% endblock %}
