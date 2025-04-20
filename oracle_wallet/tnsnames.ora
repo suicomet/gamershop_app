@@ -1,0 +1,12 @@
+j6fzd3r1skg2tz33_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-valparaiso-1.oraclecloud.com))(connect_data=(service_name=g77a6dd7d13130b_j6fzd3r1skg2tz33_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-valparaiso-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+j6fzd3r1skg2tz33_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-valparaiso-1.oraclecloud.com))(connect_data=(service_name=g77a6dd7d13130b_j6fzd3r1skg2tz33_low.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-valparaiso-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+j6fzd3r1skg2tz33_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-valparaiso-1.oraclecloud.com))(connect_data=(service_name=g77a6dd7d13130b_j6fzd3r1skg2tz33_medium.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-valparaiso-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+j6fzd3r1skg2tz33_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-valparaiso-1.oraclecloud.com))(connect_data=(service_name=g77a6dd7d13130b_j6fzd3r1skg2tz33_tp.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-valparaiso-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+j6fzd3r1skg2tz33_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-valparaiso-1.oraclecloud.com))(connect_data=(service_name=g77a6dd7d13130b_j6fzd3r1skg2tz33_tpurgent.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.sa-valparaiso-1.oraclecloud.com, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+
+

@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import oracledb
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from decouple import config
+
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
@@ -78,10 +80,22 @@ WSGI_APPLICATION = 'gamershop_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': (
+            "(DESCRIPTION=(RETRY_COUNT=20)(RETRY_DELAY=3)"
+            "(ADDRESS=(PROTOCOL=TCPS)(HOST=adb.sa-valparaiso-1.oraclecloud.com)(PORT=1522))"
+            "(CONNECT_DATA=(SERVICE_NAME=g77a6dd7d13130b_j6fzd3r1skg2tz33_high.adb.oraclecloud.com))"
+            "(SECURITY=(SSL_SERVER_DN_MATCH=no)))"
+        ),
+        'USER': 'gamershop_user',  # o el nombre exacto que usaste
+        'PASSWORD': config("DB_PASSWORD"),
+        'OPTIONS': {
+            'wallet_location': os.path.join(BASE_DIR, 'oracle_wallet')
+        }
     }
 }
+
+
 
 
 # Password validation
