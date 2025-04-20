@@ -1,87 +1,208 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juegos de Terror</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <style>
-        body { background-color: #111; color: #fff; }
-        .hero-body { display: flex; justify-content: center; }
-        .container { display: flex; justify-content: center; gap: 20px; padding: 20px; align-items: flex-start; flex-wrap: wrap; }
-        .juego { background: #333; border: 2px solid #555; border-radius: 10px; box-shadow: 4px 4px 15px rgba(255,0,0,0.5); padding: 20px; width: 320px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .juego img { width: 100%; border-radius: 10px; }
-        .votacion { margin-top: 10px; }
-        .votacion button { margin: 3px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; background-color: #222; color: white; border: 1px solid #444; }
-        .votacion button:hover { background-color: #444; }
-        .comentarios-container { text-align: center; width: 100%; margin-top: 10px; display: flex; justify-content: center; }
-        .comentarios-container textarea { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #444; resize: none; background: #222; color: white; }
-        .back-button a { text-decoration: none; color: #fff; font-weight: bold; padding: 10px 15px; background: #222; border-radius: 5px; border: 1px solid #444; transition: 0.3s; }
-        .back-button a:hover { background: #444; }
-    </style>
-</head>
-<body>
-    <div class="header-container">
-        <div class="left-container">
-            <div class="header-logo"> <p id="logo-gamershop">Gamershop</p></div>
-            <div class="categories"><a href="Categorias.html">Categorías</a></div>
-            <div class="registro"><a href="formulario.html">Registrarse</a></div>
-            <div class="login"><a href="login.html">Ingresar</a></div>
-        </div>
-        <div class="right-header">
-            <div class="header-search"><input type="text"></div>
-            <img id="logo-search" src="{% static 'images/icons8-search.svg' %}" alt="Icono de búsqueda">
-        </div>
-    </div>
 
-    <section class="hero-body">
-        <div class="container">
-            <div class="juego">
-                <span class="juego-titulo">Juegos de Terror</span>
-                <img src="https://esports.as.com/2020/10/20/bonus/videojuegos/Phasmophobia_1402669753_520194_1440x600.jpg" alt="Phasmophobia">
-                <p><strong>Nombre:</strong> Phasmophobia</p>
-                <p><strong>Descripción:</strong> Phasmophobia es un juego de terror cooperativo en primera persona donde los jugadores asumen el rol de investigadores paranormales.</p>
-                <p><strong>Precio:</strong> CLP$12.000</p>
-                <div class="votacion">
-                    <span>Vota:</span>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                </div>
-                <div class="comentarios-container">
-                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
-                </div>
+{% block title %}Juegos de Terror - Gamershop{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 30px;
+        padding: 40px 5%;
+        align-items: flex-start;
+        max-width: none;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    .juego {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        border: 2px solid #555;
+        box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        width: 350px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .juego-titulo {
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .juego .imagen-animada-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .juego .imagen-animada {
+        width: 150%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        animation: scrollImagen 10s linear infinite alternate;
+        display: block;
+    }
+
+    @keyframes scrollImagen {
+        0% {
+            transform: translateX(-35%);
+        }
+        100% {
+            transform: translateX(0%);
+        }
+    }
+
+    .juego strong {
+        color: #ffcdd2;
+    }
+
+    .votacion {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .votacion span {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .votacion button {
+        margin: 5px;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #222;
+        color: white;
+        border: 1px solid #444;
+        transition: background-color 0.3s ease;
+    }
+
+    .votacion button:hover {
+        background-color: #444;
+    }
+
+    .comentarios-container {
+        text-align: center;
+        width: 100%;
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .comentarios-container textarea {
+        width: 90%;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #444;
+        resize: vertical;
+        background-color: #222;
+        color: white;
+    }
+
+    .back-button {
+        display: none;
+    }
+</style>
+
+<section class="hero-body">
+    <div class="container">
+        <div class="juego">
+            <span class="juego-titulo">Juegos de Terror</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://esports.as.com/2020/10/20/bonus/videojuegos/Phasmophobia_1402669753_520194_1440x600.jpg" alt="Phasmophobia">
             </div>
-            <div class="juego">
-                <span class="juego-titulo">Juegos de Terror</span>
-                <img src="https://images.steamusercontent.com/ugc/787504733805824724/CFC77587F3F3CE121CC35DCB4F9CA672E4C7FAC4/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Silent Hill">
-                <p><strong>Nombre:</strong> Silent Hill</p>
-                <p><strong>Descripción:</strong> Silent Hill (1999) es un survival horror donde Harry Mason busca a su hija en un pueblo envuelto en niebla y misterio.</p>
-                <p><strong>Precio:</strong> CLP$4.990</p>
-                <div class="votacion">
-                    <span>Vota:</span>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                </div>
-                <div class="comentarios-container">
-                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
-                </div>
+            <p><strong>Nombre:</strong> Phasmophobia</p>
+            <p><strong>Descripción:</strong> Phasmophobia es un juego de terror cooperativo en primera persona donde los jugadores asumen el rol de investigadores paranormales.</p>
+            <p><strong>Precio:</strong> CLP$12.000</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
             </div>
         </div>
-    </section>
-
-    <div class="back-button">
-        <a href="index.html">Volver al inicio</a>
+        <div class="juego">
+            <span class="juego-titulo">Juegos de Terror</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://images.steamusercontent.com/ugc/787504733805824724/CFC77587F3F3CE121CC35DCB4F9CA672E4C7FAC4/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Silent Hill">
+            </div>
+            <p><strong>Nombre:</strong> Silent Hill</p>
+            <p><strong>Descripción:</strong> Silent Hill (1999) es un survival horror donde Harry Mason busca a su hija en un pueblo envuelto en niebla y misterio.</p>
+            <p><strong>Precio:</strong> CLP$4.990</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+            </div>
+        </div>
+        <div class="juego">
+            <span class="juego-titulo">Juegos de Terror</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2475490/capsule_616x353.jpg?t=1744481236" alt="Mouthwashing">
+            </div>
+            <p><strong>Nombre:</strong> Mouthwashing</p>
+            <p><strong>Descripción:</strong> Un juego de terror psicológico en primera persona con elementos de exploración y resolución de acertijos, ambientado en entornos inquietantes y surrealistas.</p>
+            <p><strong>Precio:</strong> CLP$7.500</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+            </div>
+        </div>
+        <div class="juego">
+            <span class="juego-titulo">Juegos de Terror</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://img.konami.com/games_cms/promo/eu/uploads/silent-hill-2_keyvisual-600x338.jpg" alt="Silent Hill 2">
+            </div>
+            <p><strong>Nombre:</strong> Silent Hill 2</p>
+            <p><strong>Descripción:</strong> Considerado un clásico del survival horror, Silent Hill 2 sigue a James Sunderland en su búsqueda de respuestas en el misterioso pueblo de Silent Hill tras recibir una carta de su difunta esposa.</p>
+            <p><strong>Precio:</strong> CLP$14.990</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="footer-container">
-        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
-    </div>
-</body>
-</html>
+{% endblock %}
