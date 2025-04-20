@@ -20,15 +20,16 @@
             <div class="nav-button"><a href="{% url 'categorias' %}">Categorías</a></div>
             <div class="nav-button"><a href="{% url 'registro' %}">Registrarse</a></div>
            {% if user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <div class="nav-button">
-                        <button type="submit">Cerrar sesión</button>
-                    </div>
-               </form>
-           {% else %}
+            <div class="nav-button"><a href="{% url 'modificar_perfil' %}">Modificar perfil</a></div>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <div class="nav-button">
+                    <button type="submit">Cerrar sesión</button>
+                </div>
+            </form>
+            {% else %}
                 <div class="nav-button"><a href="{% url 'login' %}">Ingresar</a></div>
-           {% endif %}
+            {% endif %}
 
 
         </div>

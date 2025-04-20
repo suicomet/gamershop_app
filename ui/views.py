@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import RegistroUsuarioForm
 from django.contrib.auth.decorators import login_required
 from .decorators import allowed_roles, admin_only
+from .forms import ModificarPerfilForm
 # Create your views here.
 
 
@@ -76,6 +77,21 @@ def terror(request):
 
 def inicio(request):
     return render(request, "index.html")
+
+@login_required(login_url='login')
+def modificar_perfil(request):
+    if request.method == 'POST':
+        form = ModificarPerfilForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tu perfil ha sido actualizado correctamente.')
+            return redirect('index')  # o puedes redirigir a 'modificar_perfil' si quieres quedarse ahí
+        else:
+            messages.error(request, 'Corrige los errores del formulario.')
+    else:
+        form = ModificarPerfilForm(instance=request.user)
+
+    return render(request, 'modificar_perfil.html', {'form': form})
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'

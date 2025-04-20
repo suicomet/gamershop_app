@@ -3,6 +3,43 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
+class ModificarPerfilForm(forms.ModelForm):
+    fecha_nacimiento = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        label='Fecha de nacimiento',
+        required=False
+    )
+    direccion = forms.CharField(
+        label='Dirección',
+        required=False
+    )
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'username', 'email']
+        labels = {
+            'first_name': 'Nombre completo',
+            'username': 'Nombre de usuario',
+            'email': 'Correo electrónico'
+        }
+        help_texts = {
+            'username': None
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs['readonly'] = True
+        self.fields['email'].widget.attrs['readonly'] = True
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        user_id = self.instance.id
+        if User.objects.exclude(id=user_id).filter(username=username).exists():
+            raise ValidationError("Este nombre de usuario ya está en uso.")
+        return username
+
+
 class RegistroUsuarioForm(forms.ModelForm):
     contra = forms.CharField(widget=forms.PasswordInput, label='Contraseña')
     recontra = forms.CharField(widget=forms.PasswordInput, label='Reingrese su contraseña')
@@ -12,7 +49,6 @@ class RegistroUsuarioForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'username', 'email']
-
         labels = {
             'first_name': 'Nombre completo',
             'username': 'Nombre de usuario',
@@ -21,6 +57,7 @@ class RegistroUsuarioForm(forms.ModelForm):
         help_texts = {
             'username': 'Requerido. Letras, números y @/./+/-/_ solamente.',
         }
+
     def clean_first_name(self):
         nombre = self.cleaned_data['first_name']
         if any(char.isdigit() for char in nombre):

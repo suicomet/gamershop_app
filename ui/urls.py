@@ -1,6 +1,9 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from .views import CustomLoginView, home, categorias, accion, admin_pag, aventura, estrategia, registrar, freeToPlay, terminos, terror, inicio
+from .views import (
+    CustomLoginView, home, categorias, accion, admin_pag, aventura,
+    estrategia, registrar, freeToPlay, terminos, terror, inicio,
+    modificar_perfil)
 
 
 urlpatterns = [
@@ -16,5 +19,5 @@ urlpatterns = [
     path('terror/', terror, name='terror'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
-
+    path('modificar-perfil/', modificar_perfil, name='modificar_perfil'),
 ]

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar perfil - Gamershop{% endblock %}
+
+{% block content %}
+<style>
+    .perfil-wrapper {
+        background-image: url('{% static "images/fondomine.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 0;
+    }
+
+    .card {
+        background-color: rgba(0, 0, 0, 0.85);
+        border-radius: 12px;
+        color: white;
+        padding: 30px;
+        width: 100%;
+        max-width: 700px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .card h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 28px;
+    }
+
+    .card p.desc {
+        text-align: center;
+        font-size: 15px;
+        margin-bottom: 25px;
+        color: #d1d1d1;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-guardar {
+        background-color: #28a745;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-guardar:hover {
+        background-color: #218838;
+    }
+</style>
+
+<div class="perfil-wrapper">
+    <div class="card">
+        <h2>Editar mi perfil</h2>
+        <p class="desc">Puedes modificar tus datos personales aquí.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-guardar">Guardar cambios</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
