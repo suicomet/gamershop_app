@@ -198,3 +198,24 @@ a {
 .footer-text {
     margin: 5px;
 }
+.recuperar-wrapper {
+    background-image: url('../images/gtawall.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.card-recuperar {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    color: white;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}

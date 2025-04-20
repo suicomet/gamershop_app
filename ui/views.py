@@ -62,6 +62,15 @@ def registrar(request):
     return render(request, 'formulario.html', {'form': form})
 
 
+def recuperar_contrasena(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if not email:
+            messages.error(request, "Debes ingresar un correo válido.")
+        else:
+            # Simulación de envío de correo
+            messages.success(request, "Se ha enviado un enlace de recuperación a tu correo.")
+    return render(request, 'recuperar_contrasena.html')
 
 def freeToPlay(request):
     return render(request, "FreeToPlay.html")

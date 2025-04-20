@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recuperar contraseña - Gamershop{% endblock %}
+
+{% block content %}
+<div class="recuperar-wrapper">
+    <div class="card card-recuperar">
+        <h2>Recuperar contraseña</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: {% if message.tags == 'error' %}red{% else %}lime{% endif %}; font-weight: bold; margin-bottom: 10px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar enlace</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

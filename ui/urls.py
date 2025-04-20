@@ -3,7 +3,7 @@ from django.contrib.auth.views import LogoutView
 from .views import (
     CustomLoginView, home, categorias, accion, admin_pag, aventura,
     estrategia, registrar, freeToPlay, terminos, terror, inicio,
-    modificar_perfil)
+    modificar_perfil, recuperar_contrasena)
 
 
 urlpatterns = [
@@ -20,4 +20,5 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
     path('modificar-perfil/', modificar_perfil, name='modificar_perfil'),
+    path('recuperar-contrasena/', recuperar_contrasena, name='recuperar_contrasena'),
 ]
