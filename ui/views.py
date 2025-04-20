@@ -89,7 +89,14 @@ def terminos(request):
 def detalle_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comentarios = Comentario.objects.filter(post=post).order_by('-fecha_comentario')
-    return render(request, 'detalle_post.html', {'post': post, 'comentarios': comentarios})
+
+    for c in comentarios:
+        print("Comentario de:", c.autor.user.username, "-", c.contenido)
+
+    return render(request, 'detalle_post.html', {
+        'post': post,
+        'comentarios': comentarios
+    })
 
 def terror(request):
     return render(request, "Terror.html")

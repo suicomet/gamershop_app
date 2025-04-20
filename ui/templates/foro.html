@@ -1,22 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Foro Gamer{% endblock %}
 
 {% block content %}
-<div class="about-us">
-    <h1>Foro Gamer</h1>
-    <p>Explora temas, comparte tu opinión y únete a la conversación.</p>
+<section class="about-us">
+    <h2 style="font-size: 32px; text-align:center; color:#fd1810">Foro Gamer</h2>
+    <p style="text-align:center">Explora temas, comparte tu opinión y únete a la conversación.</p>
 
-    <ul style="list-style: none; padding: 0;">
+    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 30px;">
         {% for post in posts %}
-            <li style="margin-bottom: 20px;">
-                <h3><a href="{% url 'detalle_post' post.id %}">{{ post.titulo }}</a></h3>
-                <p><strong>Autor:</strong> {{ post.autor.user.username }} | <strong>Publicado:</strong> {{ post.fecha_publicacion|date:"d M Y H:i" }}</p>
-                <p>{{ post.contenido|truncatechars:150 }}</p>
-            </li>
+        <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px;">
+            <h3 style="margin-bottom: 10px;">
+                <a href="{% url 'detalle_post' post.id %}" style="color: #fd1810; text-decoration: underline;">
+                    {{ post.titulo }}
+                </a>
+            </h3>
+            <p style="margin: 5px 0;"><strong>Publicado por:</strong> {{ post.autor.user.username }}</p>
+            <p style="margin: 5px 0;"><strong>Fecha:</strong> {{ post.fecha_publicacion|date:"d/m/Y H:i" }}</p>
+            <p style="margin: 15px 0;">{{ post.contenido|truncatechars:150 }}</p>
+            <a href="{% url 'detalle_post' post.id %}" class="nav-button" style="margin-top: 10px;">Ver hilo y comentar</a>
+        </div>
         {% empty %}
-            <li>No hay publicaciones aún.</li>
+        <p style="text-align:center">No hay publicaciones aún.</p>
         {% endfor %}
-    </ul>
-</div>
+    </div>
+</section>
 {% endblock %}
+
