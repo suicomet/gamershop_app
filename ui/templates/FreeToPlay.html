@@ -1,87 +1,206 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juegos Free to Play</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <style>
-        body { background-color: #fff3cd; color: #333; }
-        .hero-body { display: flex; justify-content: center; }
-        .container { display: flex; justify-content: center; gap: 20px; padding: 20px; align-items: flex-start; flex-wrap: wrap; }
-        .juego { background: #ffdf7e; border-radius: 10px; box-shadow: 4px 4px 15px rgba(255, 193, 7, 0.5); padding: 20px; width: 320px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .juego img { width: 100%; border-radius: 10px; }
-        .votacion { margin-top: 10px; }
-        .votacion button { margin: 3px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; background-color: #f0c14b; color: white; }
-        .votacion button:hover { background-color: #e6ac3d; }
-        .comentarios-container { text-align: center; width: 100%; margin-top: 10px; display: flex; justify-content: center; }
-        .comentarios-container textarea { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; resize: none; }
-        .back-button a { text-decoration: none; color: #fff; font-weight: bold; padding: 10px 15px; background: #f0c14b; border-radius: 5px; transition: 0.3s; }
-        .back-button a:hover { background: #e6ac3d; }
-    </style>
-</head>
-<body>
-    <div class="header-container">
-        <div class="left-container">
-            <div class="header-logo"> <p id="logo-gamershop">Gamershop</p></div>
-            <div class="categories"><a href="Categorias.html">Categorías</a></div>
-            <div class="registro"><a href="formulario.html">Registrarse</a></div>
-            <div class="login"><a href="login.html">Ingresar</a></div>
-        </div>
-        <div class="right-header">
-            <div class="header-search"><input type="text"></div>
-            <img id="logo-search" src="{% static 'css/icons8-search.svg' %}" alt="Icono de búsqueda">
-        </div>
-    </div>
 
-    <section class="hero-body">
-        <div class="container">
-            <div class="juego">
-                <span class="juego-titulo">Juegos Free to Play</span>
-                <img src="https://www.infobae.com/resizer/v2/CNTWUAMXZRF3BPIYPCNPFHOMJQ.jpg?auth=4dbb84a1e5b92e9729f0a8939402342e9e18fbffffa9084efcc57a11d40a7e5d&smart=true&width=1200&height=675&quality=85" alt="League of Legends">
-                <p><strong>Nombre:</strong> League of Legends</p>
-                <p><strong>Descripción:</strong> League of Legends es un popular juego de estrategia y acción en línea desarrollado por Riot Games. Es un MOBA donde dos equipos de cinco jugadores compiten para destruir la base enemiga mientras controlan campeones con habilidades únicas.</p>
-                <p><strong>Precio:</strong> Gratuito</p>
-                <div class="votacion">
-                    <span>Vota:</span>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                </div>
-                <div class="comentarios-container">
-                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
-                </div>
+{% block title %}Juegos Free to Play - Gamershop{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 30px;
+        padding: 40px 5%;
+        align-items: flex-start;
+        max-width: none;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    .juego {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        box-shadow: 4px 4px 15px rgba(255, 193, 7, 0.5);
+        padding: 30px;
+        width: 350px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .juego-titulo {
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .juego .imagen-animada-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .juego .imagen-animada {
+        width: 150%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        animation: scrollImagen 10s linear infinite alternate;
+        display: block;
+    }
+
+    @keyframes scrollImagen {
+        0% {
+            transform: translateX(-35%);
+        }
+        100% {
+            transform: translateX(0%);
+        }
+    }
+
+    .juego strong {
+        color: #ffdf7e;
+    }
+
+    .votacion {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .votacion span {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .votacion button {
+        margin: 5px;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f0c14b;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .votacion button:hover {
+        background-color: #e6ac3d;
+    }
+
+    .comentarios-container {
+        text-align: center;
+        width: 100%;
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .comentarios-container textarea {
+        width: 90%;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        resize: vertical;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+    }
+
+    .back-button {
+        display: none;
+    }
+</style>
+
+<section class="hero-body">
+    <div class="container">
+        <div class="juego">
+            <span class="juego-titulo">Juegos Free to Play</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://www.infobae.com/resizer/v2/CNTWUAMXZRF3BPIYPCNPFHOMJQ.jpg?auth=4dbb84a1e5b92e9729f0a8939402342e9e18fbffffa9084efcc57a11d40a7e5d&smart=true&width=1200&height=675&quality=85" alt="League of Legends">
             </div>
-            <div class="juego">
-                <span class="juego-titulo">Juegos Free to Play</span>
-                <img src="https://www.adnradio.cl/resizer/v2/5WXIU6SIDFBWNLVQVDWM2XXEPI.jpg?auth=2f63c41391948fae7f2e1544fe034ac13bc969ae9e5122470d8963b68bbfc4af&width=760&height=570&quality=70&smart=true" alt="Fortnite">
-                <p><strong>Nombre:</strong> Fortnite</p>
-                <p><strong>Descripción:</strong> Fortnite es un videojuego de acción y supervivencia desarrollado por Epic Games. Su modo más popular, Battle Royale, enfrenta a 100 jugadores en una isla donde deben recolectar recursos, construir estructuras y luchar hasta ser el último en pie.</p>
-                <p><strong>Precio:</strong> Gratuito</p>
-                <div class="votacion">
-                    <span>Vota:</span>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                </div>
-                <div class="comentarios-container">
-                    <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
-                </div>
+            <p><strong>Nombre:</strong> League of Legends</p>
+            <p><strong>Descripción:</strong> League of Legends es un popular juego de estrategia y acción en línea desarrollado por Riot Games. Es un MOBA donde dos equipos de cinco jugadores compiten para destruir la base enemiga mientras controlan campeones con habilidades únicas.</p>
+            <p><strong>Precio:</strong> Gratuito</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
             </div>
         </div>
-    </section>
-
-    <div class="back-button">
-        <a href="index.html">Volver al inicio</a>
+        <div class="juego">
+            <span class="juego-titulo">Juegos Free to Play</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://www.adnradio.cl/resizer/v2/5WXIU6SIDFBWNLVQVDWM2XXEPI.jpg?auth=2f63c41391948fae7f2e1544fe034ac13bc969ae9e5122470d8963b68bbfc4af&width=760&height=570&quality=70&smart=true" alt="Fortnite">
+            </div>
+            <p><strong>Nombre:</strong> Fortnite</p>
+            <p><strong>Descripción:</strong> Fortnite es un videojuego de acción y supervivencia desarrollado por Epic Games. Su modo más popular, Battle Royale, enfrenta a 100 jugadores en una isla donde deben recolectar recursos, construir estructuras y luchar hasta ser el último en pie.</p>
+            <p><strong>Precio:</strong> Gratuito</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+            </div>
+        </div>
+        <div class="juego">
+            <span class="juego-titulo">Juegos Free to Play</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://cdn2.unrealengine.com/01-1920x1080-1920x1080-88255a697e4f.jpg" alt="Marvel Rivals">
+            </div>
+            <p><strong>Nombre:</strong> Marvel Rivals</p>
+            <p><strong>Descripción:</strong> Un shooter de superhéroes en equipo donde jugadores controlan personajes del universo Marvel en intensas batallas jugador contra jugador.</p>
+            <p><strong>Precio:</strong> Gratuito </p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+            </div>
+        </div>
+        <div class="juego">
+            <span class="juego-titulo">Juegos Free to Play</span>
+            <div class="imagen-animada-container">
+                <img class="imagen-animada" src="https://media.tycsports.com/files/2022/10/04/488145/overwatch-2_862x485.webp" alt="Overwatch 2">
+            </div>
+            <p><strong>Nombre:</strong> Overwatch 2</p>
+            <p><strong>Descripción:</strong> Un shooter en equipo aclamado por la crítica con una lista diversa de héroes, intensas batallas y modos de juego estratégicos.</p>
+            <p><strong>Precio:</strong> Gratuito</p>
+            <div class="votacion">
+                <span>Vota:</span>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="comentarios-container">
+                <textarea placeholder="Comenta tu opinión aquí (Registrarse para comentar)"></textarea>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="footer-container">
-        <p class="footer-text">Todos los derechos reservados © Gamershop 2025</p>
-    </div>
-</body>
-</html>
+{% endblock %}
