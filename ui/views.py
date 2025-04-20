@@ -7,6 +7,11 @@ from .forms import RegistroUsuarioForm
 from django.contrib.auth.decorators import login_required
 from .decorators import allowed_roles, admin_only
 from .forms import ModificarPerfilForm
+from django.shortcuts import get_object_or_404
+from .models import Post, Comentario
+
+
+
 # Create your views here.
 
 
@@ -81,8 +86,17 @@ def login(request):
 def terminos(request):
     return render(request, "terminos.html")
 
+def detalle_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    comentarios = Comentario.objects.filter(post=post).order_by('-fecha_comentario')
+    return render(request, 'detalle_post.html', {'post': post, 'comentarios': comentarios})
+
 def terror(request):
     return render(request, "Terror.html")
+
+def foro(request):
+    posts = Post.objects.all().order_by('-fecha_publicacion')
+    return render(request, 'foro.html', {'posts': posts})
 
 def inicio(request):
     return render(request, "index.html")

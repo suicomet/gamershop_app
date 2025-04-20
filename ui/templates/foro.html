@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Foro Gamer{% endblock %}
+
+{% block content %}
+<div class="about-us">
+    <h1>Foro Gamer</h1>
+    <p>Explora temas, comparte tu opinión y únete a la conversación.</p>
+
+    <ul style="list-style: none; padding: 0;">
+        {% for post in posts %}
+            <li style="margin-bottom: 20px;">
+                <h3><a href="{% url 'detalle_post' post.id %}">{{ post.titulo }}</a></h3>
+                <p><strong>Autor:</strong> {{ post.autor.user.username }} | <strong>Publicado:</strong> {{ post.fecha_publicacion|date:"d M Y H:i" }}</p>
+                <p>{{ post.contenido|truncatechars:150 }}</p>
+            </li>
+        {% empty %}
+            <li>No hay publicaciones aún.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

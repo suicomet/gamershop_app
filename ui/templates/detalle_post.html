@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Foro Gamer{% endblock %}
+
+{% block content %}
+<section class="about-us">
+    <h2 style="font-size: 32px; text-align:center; color:#fd1810">Foro Gamer</h2>
+    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 30px;">
+        {% for post in posts %}
+        <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px;">
+            <h3 style="color: white; margin-bottom: 10px;">{{ post.titulo }}</h3>
+            <p style="margin: 5px 0;"><strong>Publicado por:</strong> {{ post.autor.user.username }}</p>
+            <p style="margin: 5px 0;"><strong>Fecha:</strong> {{ post.fecha_publicacion|date:"d/m/Y H:i" }}</p>
+            <p style="margin: 15px 0;">{{ post.contenido|truncatewords:25 }}</p>
+            <a href="{% url 'detalle_post' post.id %}" class="nav-button">Ver más</a>
+        </div>
+        {% empty %}
+        <p style="text-align:center">No hay publicaciones aún.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
