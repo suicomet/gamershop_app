@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("{% static 'images/wow.jpg' %}");
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    .tabla-juegos {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .tabla-juegos th {
+        padding: 10px;
+        border-bottom: 1px solid gray;
+        color: white;
+        background-color: #fd1810;
+        text-align: left;
+    }
+    .tabla-juegos td {
+        padding: 10px;
+        color: white;
+    }
+    .acciones a {
+        display: inline-block;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+    .acciones a.editar {
+        color: orange;
+    }
+    .acciones a.eliminar {
+        color: red;
+    }
+</style>
+
+<div style="padding: 40px;">
+    <h2 style="text-align: center; color: white;">🎮 Juegos Disponibles</h2>
+    <table class="tabla-juegos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for juego in juegos %}
+            <tr>
+                <td>{{ juego.nombre }}</td>
+                <td>{{ juego.descripcion }}</td>
+                <td>${{ juego.precio }}</td>
+                <td>{{ juego.categoria.nombre }}</td>
+                <td class="acciones">
+                    <a href="{% url 'editar_juego' juego.id %}" class="editar">✏️ Editar</a><br>
+                    <a href="{% url 'eliminar_juego' juego.id %}" class="eliminar"
+                       onclick="return confirm('¿Estás seguro de que deseas eliminar este juego?');">🗑️ Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

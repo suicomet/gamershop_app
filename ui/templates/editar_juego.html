@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="formulario-wrapper">
+    <h2 style="text-align:center; color:white;">✏️ Editar juego: {{ juego.nombre }}</h2>
+    <form method="POST" style="max-width: 500px; margin: auto;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color: orange; color: white; padding: 10px 20px; border: none;">Guardar cambios</button>
+        <a href="{% url 'listar_juegos' %}" style="margin-left: 10px; color: white;">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

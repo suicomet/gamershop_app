@@ -3,11 +3,15 @@ from django.contrib.auth.views import LogoutView
 from .views import (
     CustomLoginView, home, categorias, accion, admin_pag, aventura,
     estrategia, registrar, freeToPlay, terminos, terror, inicio,
-    modificar_perfil, recuperar_contrasena, detalle_post, foro, noticias_gamer, JuegoListAPIView)
+    modificar_perfil, recuperar_contrasena, detalle_post, foro, noticias_gamer, JuegoListAPIView, listar_juegos, eliminar_juego, editar_juego)
 
 
 urlpatterns = [
     path('api/juegos/', JuegoListAPIView.as_view(), name='api_juegos'),
+    path('listar-juegos/', listar_juegos, name='listar_juegos'),
+    path('juegos/eliminar/<int:juego_id>/', eliminar_juego, name='eliminar_juego'),
+
+    path('juegos/editar/<int:juego_id>/', editar_juego, name='editar_juego'),
 
     path('noticias/', noticias_gamer, name='noticias_gamer'),
     path('', home, name='index'),

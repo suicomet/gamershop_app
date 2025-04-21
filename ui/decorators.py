@@ -5,8 +5,11 @@ def allowed_roles(roles=[]):
     def decorator(view_func):
         def wrapper_func(request, *args, **kwargs):
             if request.user.groups.exists():
-                grupo = request.user.groups.all()[0].name
-                if grupo in roles:
+
+                grupos_usuario = [g.name for g in request.user.groups.all()]
+
+
+                if any(grupo in roles for grupo in grupos_usuario):
                     return view_func(request, *args, **kwargs)
                 else:
                     return redirect('index')
@@ -15,14 +18,15 @@ def allowed_roles(roles=[]):
         return wrapper_func
     return decorator
 
-def admin_only(view_func):
-    def wrapper_function(request, *args, **kwargs):
-        grupo = None
-        if request.user.groups.exists():
-            grupo = request.user.groups.all()[0].name
 
-        if grupo == 'usuario':
-            return redirect('index')
-        if grupo == 'admin1':
-            return view_func(request, *args, **kwargs)
-    return wrapper_function
+def admin_only(view_func):
+    def wrapper_func(request, *args, **kwargs):
+        if request.user.groups.exists():
+            grupos_usuario = [g.name for g in request.user.groups.all()]
+            if 'administradores' in grupos_usuario or 'admin1' in grupos_usuario:
+                return view_func(request, *args, **kwargs)
+            else:
+                return redirect('index')
+        else:
+            return redirect('login')
+    return wrapper_func

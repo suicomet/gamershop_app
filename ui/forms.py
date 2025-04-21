@@ -1,4 +1,5 @@
 from django import forms
+from .models import Juego
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
@@ -28,7 +29,6 @@ class ModificarPerfilForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         self.fields['username'].widget.attrs['readonly'] = True
         self.fields['email'].widget.attrs['readonly'] = True
 
@@ -93,3 +93,9 @@ class RegistroUsuarioForm(forms.ModelForm):
 
         if contra and recontra and contra != recontra:
             raise ValidationError("Las contraseñas no coinciden.")
+
+
+class JuegoForm(forms.ModelForm):
+    class Meta:
+        model = Juego
+        fields = ['nombre', 'descripcion', 'precio', 'categoria']

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .forms import JuegoForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -35,6 +36,40 @@ def admin_pag(request):
 def aventura(request):
     return render(request, "Aventura.html")
 
+def crear_juego(request):
+    if request.method == 'POST':
+        form = JuegoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_juegos')  # Lo crearemos en el paso 4
+    else:
+        form = JuegoForm()
+    return render(request, 'crear_juego.html', {'form': form})
+
+def listar_juegos(request):
+    juegos = Juego.objects.all().order_by('nombre')
+    return render(request, 'listar_juegos.html', {'juegos': juegos})
+@login_required(login_url='login')
+@allowed_roles(roles=['Administradores'])
+def eliminar_juego(request, juego_id):
+    juego = get_object_or_404(Juego, id=juego_id)
+    juego.delete()
+    messages.success(request, f'Juego "{juego.nombre}" eliminado correctamente.')
+    return redirect('listar_juegos')
+@login_required(login_url='login')
+@allowed_roles(roles=['Administradores'])
+def editar_juego(request, juego_id):
+    juego = get_object_or_404(Juego, id=juego_id)
+    if request.method == 'POST':
+        form = JuegoForm(request.POST, instance=juego)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Juego "{juego.nombre}" editado correctamente.')
+            return redirect('listar_juegos')
+    else:
+        form = JuegoForm(instance=juego)
+
+    return render(request, 'editar_juego.html', {'form': form, 'juego': juego})
 def estrategia(request):
     return render(request, "Estrategia.html")
 
