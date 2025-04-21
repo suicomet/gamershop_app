@@ -10,12 +10,13 @@
     min-height: 100vh;
 ">
 
-    <!-- Título principal -->
-    <h2 style="text-align: center; font-size: 40px; color: white; margin-bottom: 40px;">
-        📰 Últimas Noticias del Mundo Gamer
-    </h2>
 
-    <!-- Tarjetas con grid mejorado -->
+   <h2 style="text-align: center; font-size: 40px; color: white; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+    📰 Últimas Noticias del Mundo Gamer
+</h2>
+
+
+
     <div style="
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -42,7 +43,10 @@
                 {% endif %}
                 <div style="padding: 20px; flex-grow: 1;">
                     <h3 style="color: #fd1810; font-size: 20px;">{{ noticia.title }}</h3>
-                    <p style="color: white; font-size: 14px; margin-top: 10px;">{{ noticia.description }}</p>
+                    <p style="color: white; font-size: 14px; margin-top: 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+    {{ noticia.description }}
+</p>
+
                 </div>
                 <div style="padding: 0 20px 20px;">
                     <a href="{{ noticia.url }}" target="_blank" style="color: lightblue; font-weight: bold;">Leer más</a>

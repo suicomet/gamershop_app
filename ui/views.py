@@ -11,7 +11,9 @@ from django.shortcuts import get_object_or_404
 from .models import Post, Comentario
 import requests
 from django.shortcuts import render
-
+from rest_framework import generics
+from .models import Juego
+from .serializers import JuegoSerializer
 
 # Create your views here.
 
@@ -138,3 +140,7 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return self.success_url
+
+class JuegoListAPIView(generics.ListAPIView):
+    queryset = Juego.objects.all().order_by('nombre')
+    serializer_class = JuegoSerializer
