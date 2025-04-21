@@ -1,14 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="noticias-container">
-    <h2 style="text-align: center; color: white;">📰 Noticias Gamer</h2>
-    {% for noticia in noticias %}
-        <div style="background: rgba(255,255,255,0.1); padding: 15px; margin: 10px; border-radius: 10px;">
-            <h3 style="color: #fd1810;">{{ noticia.title }}</h3>
-            <p>{{ noticia.description }}</p>
-            <a href="{{ noticia.url }}" target="_blank" style="color: lightblue;">Leer más</a>
-        </div>
-    {% endfor %}
+<div class="noticias-wrapper" style="
+    padding: 40px;
+    background-image: url('{% static 'images/link.jpg' %}');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+">
+
+    <!-- Título principal -->
+    <h2 style="text-align: center; font-size: 40px; color: white; margin-bottom: 40px;">
+        📰 Últimas Noticias del Mundo Gamer
+    </h2>
+
+    <!-- Tarjetas con grid mejorado -->
+    <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        justify-content: center;
+        align-items: stretch;
+    ">
+        {% for noticia in noticias %}
+            <div style="
+                background-color: rgba(0, 0, 0, 0.6);
+                border-radius: 15px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            "
+            onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.5)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.3)'"
+            >
+                {% if noticia.urlToImage %}
+                    <img src="{{ noticia.urlToImage }}" alt="Imagen noticia" style="width: 100%; height: 180px; object-fit: cover;">
+                {% endif %}
+                <div style="padding: 20px; flex-grow: 1;">
+                    <h3 style="color: #fd1810; font-size: 20px;">{{ noticia.title }}</h3>
+                    <p style="color: white; font-size: 14px; margin-top: 10px;">{{ noticia.description }}</p>
+                </div>
+                <div style="padding: 0 20px 20px;">
+                    <a href="{{ noticia.url }}" target="_blank" style="color: lightblue; font-weight: bold;">Leer más</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
+
