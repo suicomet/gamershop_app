@@ -9,7 +9,8 @@ from .decorators import allowed_roles, admin_only
 from .forms import ModificarPerfilForm
 from django.shortcuts import get_object_or_404
 from .models import Post, Comentario
-
+import requests
+from django.shortcuts import render
 
 
 # Create your views here.
@@ -35,6 +36,13 @@ def aventura(request):
 def estrategia(request):
     return render(request, "Estrategia.html")
 
+def noticias_gamer(request):
+    api_key = '7614c57452484252a27afa2f273b8d60'
+    url = f'https://newsapi.org/v2/everything?q=videogames&language=es&sortBy=publishedAt&apiKey={api_key}'
+    response = requests.get(url)
+    data = response.json()
+    noticias = data.get('articles', [])
+    return render(request, 'noticias.html', {'noticias': noticias})
 
 from django.contrib.auth.models import User
 from .forms import RegistroUsuarioForm

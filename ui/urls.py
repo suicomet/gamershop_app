@@ -3,10 +3,11 @@ from django.contrib.auth.views import LogoutView
 from .views import (
     CustomLoginView, home, categorias, accion, admin_pag, aventura,
     estrategia, registrar, freeToPlay, terminos, terror, inicio,
-    modificar_perfil, recuperar_contrasena, detalle_post, foro)
+    modificar_perfil, recuperar_contrasena, detalle_post, foro, noticias_gamer)
 
 
 urlpatterns = [
+    path('noticias/', noticias_gamer, name='noticias_gamer'),
     path('', home, name='index'),
     path('categorias/', categorias, name='categorias'),
     path('accion/', accion, name='accion'),

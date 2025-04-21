@@ -19,6 +19,9 @@
             <div class="nav-button"><a href="{% url 'categorias' %}">Categorías</a></div>
             <div class="nav-button"><a href="{% url 'registro' %}">Registrarse</a></div>
             <div class="nav-button"><a href="{% url 'foro' %}">Foro</a></div>
+            <div class="nav-button"><a href="{% url 'noticias_gamer' %}">Noticias</a></div>
+
+
 
             {% if user.is_authenticated %}
                 <div class="nav-button"><a href="{% url 'modificar_perfil' %}">Modificar perfil</a></div>
