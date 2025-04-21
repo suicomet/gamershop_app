@@ -4,27 +4,40 @@
 {% block title %}Foro Gamer{% endblock %}
 
 {% block content %}
-<section class="about-us">
-    <h2 style="font-size: 32px; text-align:center; color:#fd1810">Foro Gamer</h2>
-    <p style="text-align:center">Explora temas, comparte tu opinión y únete a la conversación.</p>
+<section style="padding: 40px 20px; margin: 20px auto; max-width: 960px;">
+    <h2 style="font-size: 3.5em; font-weight: bold; color:#f80e0e; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); letter-spacing: 1px; text-transform: uppercase; text-align: center;">Foro Gamer</h2>
+    <p style="font-size: 1.2em; color: #f0f0f0; line-height: 1.8; margin-bottom: 40px; font-style: italic; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); text-align: center;">Explora temas, comparte tu opinión y únete a la conversación.</p>
 
-    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 30px;">
+    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 20px;">
         {% for post in posts %}
-        <div style="background-color: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px;">
-            <h3 style="margin-bottom: 10px;">
-                <a href="{% url 'detalle_post' post.id %}" style="color: #fd1810; text-decoration: underline;">
+        <div style="background-color: rgba(0, 0, 0, 0.6);
+                    color: #ffffff;
+                    padding: 20px;
+                    border-radius: 8px;
+                    border: 1px solid #333;
+                    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                    text-align: left;">
+            <h3 style="margin-bottom: 10px; font-size: 1.8em;">
+                <a href="{% url 'detalle_post' post.id %}" style="color: #dc2222; text-decoration: none; transition: color 0.3s ease;">
                     {{ post.titulo }}
                 </a>
             </h3>
-            <p style="margin: 5px 0;"><strong>Publicado por:</strong> {{ post.autor.user.username }}</p>
-            <p style="margin: 5px 0;"><strong>Fecha:</strong> {{ post.fecha_publicacion|date:"d/m/Y H:i" }}</p>
-            <p style="margin: 15px 0;">{{ post.contenido|truncatechars:150 }}</p>
-            <a href="{% url 'detalle_post' post.id %}" class="nav-button" style="margin-top: 10px;">Ver hilo y comentar</a>
+            <p style="margin: 8px 0;"><strong>Iniciado por:</strong> <span style="font-weight: bold;">{{ post.autor.user.username }}</span> |
+                <strong>Fecha de inicio:</strong> <span style="color: #ddd; font-size: 0.9em;">{{ post.fecha_publicacion|date:"d/m/Y H:i" }}</span></p>
+            <p style="margin-bottom: 15px;">{{ post.contenido|truncatechars:150 }}</p>
+            <div style="text-align: right;">
+                <a href="{% url 'detalle_post' post.id %}" style="display: inline-block;
+                           background-color: #007bff;
+                           color: white;
+                           padding: 10px 15px;
+                           border-radius: 5px;
+                           text-decoration: none;
+                           transition: background-color 0.3s ease;">Ver hilo y comentar</a>
+            </div>
         </div>
         {% empty %}
-        <p style="text-align:center">No hay publicaciones aún.</p>
+        <p style="text-align:center; color: #777; font-style: italic;">No hay hilos de discusión aún.</p>
         {% endfor %}
     </div>
 </section>
 {% endblock %}
-
