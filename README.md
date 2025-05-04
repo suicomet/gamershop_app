@@ -15,9 +15,9 @@ Los usuarios registrados tienen la posibilidad de valorar los juegos con una pun
 ### 🛠️ Tecnologías Utilizadas
 
 - **Frontend:**
-  - HTML5
-  - CSS3
-  - Bootstrap (v5+)
+  - HTML
+  - CSS
+  - Bootstrap
   - JavaScript
 
 - **Backend:**
@@ -85,6 +85,6 @@ fetch("https://tudominio/api/juegos/")
 
 ### 👨‍💻 Desarrolladores
 
-- [Nombre del Integrante 1]  
-- [Nombre del Integrante 2]  
-- [Nombre del Integrante 3]  
+- Fabrizio Bugedo
+- Benjamín Araneda 
+- Nicolas Soto
