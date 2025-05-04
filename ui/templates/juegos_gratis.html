@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Juegos Gratuitos (FreeToGame API)</h2>
+  <div class="row">
+    {% for juego in juegos %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="{{ juego.thumbnail }}" class="card-img-top" alt="{{ juego.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ juego.title }}</h5>
+            <p class="card-text">{{ juego.short_description|truncatechars:100 }}</p>
+            <a href="{{ juego.game_url }}" target="_blank" class="btn btn-primary">Jugar ahora</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

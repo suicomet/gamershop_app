@@ -3,7 +3,7 @@ from django.contrib.auth.views import LogoutView
 from .views import (
     CustomLoginView, home, categorias, accion, admin_pag, aventura,
     estrategia, registrar, freeToPlay, terminos, terror, inicio,
-    modificar_perfil, recuperar_contrasena, detalle_post, foro, noticias_gamer, JuegoListAPIView, listar_juegos, eliminar_juego, editar_juego)
+    modificar_perfil, recuperar_contrasena, detalle_post, foro, noticias_gamer, JuegoListAPIView, listar_juegos, eliminar_juego, juegos_gratis, editar_juego)
 
 
 urlpatterns = [
@@ -30,4 +30,6 @@ urlpatterns = [
     path('recuperar-contrasena/', recuperar_contrasena, name='recuperar_contrasena'),
     path('foro/', foro, name='foro'),
     path('post/<int:post_id>/', detalle_post, name='detalle_post'),
+
+    path('juegos-gratis/', juegos_gratis, name='juegos_gratis'),
 ]
