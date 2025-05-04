@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="noticias-wrapper" style="
+    padding: 50px;
+    background-image: url('{% static 'images/desarrollo.png' %}');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+">
+
+    <h2 style="text-align: center; color: white; text-shadow: 2px 2px 4px black; font-size: 40px;">
+        🔧 APIs para Desarrolladores!
+    </h2>
+
+    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
+        <a href="{% url 'api_juegos' %}" target="_blank" class="nav-button" style="padding: 15px 25px; background: #343a40; color: white; border-radius: 10px;">Ver API Juegos</a>
+        <a href="{% url 'api_comentarios' %}" target="_blank" class="nav-button" style="padding: 15px 25px; background: #343a40; color: white; border-radius: 10px;">Ver API Comentarios</a>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; color: white;">
+        <p>🔹 <strong>API Juegos:</strong> Devuelve un listado JSON con todos los juegos registrados en nuestro foro.</p>
+        <p>🔹 <strong>API Comentarios:</strong> Muestra las opiniones y valoraciones realizadas por los usuarios en el foro.</p>
+    </div>
+
+    <div style="margin-top: 40px; background-color: rgba(0,0,0,0.6); padding: 30px; border-radius: 10px;">
+        <h4 style="color: lightgreen; text-align: center;">¿Cómo consumir estas APIs?</h4>
+        <p style="color: white; text-align: center;">Puedes hacer peticiones GET desde herramientas como Postman o frameworks frontend como React o Vue.</p>
+        <pre style="color: lightgray; background: #222; padding: 20px; border-radius: 8px; overflow-x: auto;">
+fetch('https://tudominio/api/juegos/')
+  .then(res => res.json())
+  .then(data => console.log(data));
+        </pre>
+    </div>
+
+</div>
+{% endblock %}

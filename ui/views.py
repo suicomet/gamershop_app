@@ -1,20 +1,21 @@
-from django.shortcuts import render, redirect
-from .forms import JuegoForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .forms import RegistroUsuarioForm
 from django.contrib.auth.decorators import login_required
+
+from .forms import JuegoForm, RegistroUsuarioForm, ModificarPerfilForm
 from .decorators import allowed_roles, admin_only
-from .forms import ModificarPerfilForm
-from django.shortcuts import get_object_or_404
-from .models import Post, Comentario
-import requests
-from django.shortcuts import render
+from .models import Juego, Post, Comentario
+from .serializers import JuegoSerializer, ComentarioSerializer
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework import generics
-from .models import Juego
-from .serializers import JuegoSerializer
+
+import requests
+
 
 # Create your views here.
 
@@ -149,6 +150,8 @@ def juegos_gratis(request):
     data = response.json()[:6]  # mostrar solo los primeros 6
     return render(request, 'juegos_gratis.html', {'juegos': data})
 
+def apis_desarrollo(request):
+    return render(request, 'apis_desarrollo.html')
 
 def terror(request):
     return render(request, "Terror.html")
@@ -186,3 +189,9 @@ class CustomLoginView(LoginView):
 class JuegoListAPIView(generics.ListAPIView):
     queryset = Juego.objects.all().order_by('nombre')
     serializer_class = JuegoSerializer
+
+class ComentarioListAPIView(APIView):
+    def get(self, request):
+        comentarios = Comentario.objects.all().order_by('-fecha_comentario')
+        serializer = ComentarioSerializer(comentarios, many=True)
+        return Response(serializer.data)
