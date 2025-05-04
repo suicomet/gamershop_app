@@ -1,2 +1,10 @@
-WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="?/network/admin")))
-SSL_SERVER_DN_MATCH=yes
+WALLET_LOCATION =
+  (SOURCE =
+    (METHOD = file)
+    (METHOD_DATA =
+      (DIRECTORY = C:/Users/fabug/PycharmProjects/gamershop_app/oracle_wallet)
+    )
+  )
+
+SSL_SERVER_DN_MATCH = yes
+SSL_CLIENT_AUTHENTICATION = FALSE

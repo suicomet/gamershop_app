@@ -1,21 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container mt-4">
-  <h2 class="mb-4">Juegos Gratuitos (FreeToGame API)</h2>
-  <div class="row">
-    {% for juego in juegos %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="{{ juego.thumbnail }}" class="card-img-top" alt="{{ juego.title }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ juego.title }}</h5>
-            <p class="card-text">{{ juego.short_description|truncatechars:100 }}</p>
-            <a href="{{ juego.game_url }}" target="_blank" class="btn btn-primary">Jugar ahora</a>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+<div class="juegos-gratis-wrapper" style="
+    padding: 40px;
+    background-image: url('{% static 'images/gaming.png' %}');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+">
+
+    <h2 style="text-align: center; font-size: 40px; color: white; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+    🎮<span style="color: rgb(224, 41, 36);">¡Los</span>
+    <span style="color: rgb(122, 201, 67);">mejores</span>
+    <span style="color: rgb(127, 178, 240);">juegos</span>
+    <span style="color: rgb(224, 41, 36);">gratis</span>
+    <span style="color: rgb(122, 201, 67);">del</span>
+    <span style="color: rgb(254, 227, 2);">mercado!</span>🎮
+</h2>
+
+
+    <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        justify-content: center;
+        align-items: stretch;
+    ">
+        {% for juego in juegos %}
+            <div style="
+                background-color: rgba(0, 0, 0, 0.6);
+                border-radius: 15px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            "
+            onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.5)'"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.3)'"
+            >
+                <img src="{{ juego.thumbnail }}" alt="Imagen juego" style="width: 100%; height: 180px; object-fit: cover;">
+
+                <div style="padding: 20px; flex-grow: 1;">
+                    <h3 style="color: #fd1810; font-size: 20px;">{{ juego.title }}</h3>
+                    <p style="color: white; font-size: 14px; margin-top: 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        {{ juego.short_description }}
+                    </p>
+                </div>
+                <div style="padding: 0 20px 20px;">
+                    <a href="{{ juego.game_url }}" target="_blank" style="color: lightblue; font-weight: bold;">Jugar ahora</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

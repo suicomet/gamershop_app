@@ -86,15 +86,17 @@ DATABASES = {
             "(DESCRIPTION=(RETRY_COUNT=20)(RETRY_DELAY=3)"
             "(ADDRESS=(PROTOCOL=TCPS)(HOST=adb.sa-valparaiso-1.oraclecloud.com)(PORT=1522))"
             "(CONNECT_DATA=(SERVICE_NAME=g77a6dd7d13130b_j6fzd3r1skg2tz33_high.adb.oraclecloud.com))"
-            "(SECURITY=(SSL_SERVER_DN_MATCH=no)))"
+            "(SECURITY=(SSL_SERVER_DN_MATCH=yes)))"
         ),
         'USER': 'gamershop_user',
         'PASSWORD': config("DB_PASSWORD"),
         'OPTIONS': {
-            'wallet_location': os.path.join(BASE_DIR, 'oracle_wallet')
+            'wallet_location': os.path.join(BASE_DIR, 'oracle_wallet'),
+
         }
     }
 }
+
 
 
 
