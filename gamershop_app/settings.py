@@ -88,7 +88,7 @@ DATABASES = {
             "(CONNECT_DATA=(SERVICE_NAME=g77a6dd7d13130b_j6fzd3r1skg2tz33_high.adb.oraclecloud.com))"
             "(SECURITY=(SSL_SERVER_DN_MATCH=no)))"
         ),
-        'USER': 'gamershop_user',  # o el nombre exacto que usaste
+        'USER': 'gamershop_user',
         'PASSWORD': config("DB_PASSWORD"),
         'OPTIONS': {
             'wallet_location': os.path.join(BASE_DIR, 'oracle_wallet')

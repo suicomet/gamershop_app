@@ -143,6 +143,13 @@ def detalle_post(request, post_id):
         'comentarios': comentarios
     })
 
+def juegos_gratis(request):
+    url = 'https://www.freetogame.com/api/games?platform=pc'
+    response = requests.get(url)
+    data = response.json()[:6]  # mostrar solo los primeros 6
+    return render(request, 'juegos_gratis.html', {'juegos': data})
+
+
 def terror(request):
     return render(request, "Terror.html")
 
