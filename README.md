@@ -1,7 +1,5 @@
 # 🕹️ Gamershop - Proyecto Web
 
-**Aplicación web creada para la asignatura _Programación Web (PGY3221)_**
-
 ---
 
 ### 📌 Descripción del Proyecto
