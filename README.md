@@ -1,4 +1,4 @@
-# 🕹️ Gamershop - Proyecto Web
+# 🕹️ Gamershop - Proyecto Programación Web
 
 ---
 
